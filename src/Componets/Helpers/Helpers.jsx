@@ -11,10 +11,3 @@ export const addClient = async (formData) => {
   return await axios.post(url, formData);
 };
 
-export const editClient = async (id,user) => {
-  return await axios.put(`${url}/${id}`, user);
-};
-
-export const deleteClient = async (id) => {
-  return await axios.delete(`${url}/${id}`);
-};

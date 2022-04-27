@@ -1,5 +1,5 @@
 export const Rutas = {
   home: "/",
-  edit: "/edit",
+  edit: "/edit/:id",
   create: "/create",
 };

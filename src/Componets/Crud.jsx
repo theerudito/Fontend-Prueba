@@ -1,13 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import {
-  FormularioApp,
-  FormularioCrear,
-  FormularioCrearCliente,
-  FormularioEditar,
-  FormularioEditarCliente,
-} from "./Fomulario/Formulario";
+import { Link } from "react-router-dom";
+import { FormularioCrearCliente } from "./Fomulario/Formulario";
 import { ApiRestData } from "./Helpers/ApiRest";
 import { getallClients } from "./Helpers/Helpers";
 
@@ -15,7 +10,6 @@ import { useModal } from "./Hooks/useModal";
 import { Modal } from "./Modal/Modal";
 import {
   BotonCrear,
-  BotonEditar,
   BotonEliminar,
   ContenedorPrincipal,
   TH,
@@ -29,10 +23,9 @@ const url = "http://localhost:5000/clients";
 export const CrudApp = () => {
   const [data, setData] = useState(ApiRestData);
   const [isOpenModalCrear, openModalCrear, closeModalCrear] = useModal(true);
-  const [isOpenModalEdit, openModalEdit, closeModalEdit] = useModal(true);
 
   const GetDatas = async () => {
-    let res = await getallClients()
+    let res = await getallClients();
     setData(res.data);
   };
 
@@ -81,7 +74,13 @@ export const CrudApp = () => {
                 <td>{item.phone} </td>
                 <td>{item.email} </td>
                 <td>
-                  <BotonEditar onClick={openModalEdit}>Edit</BotonEditar>
+                  <Link
+                    to={`/edit/${item.id}`}
+                    className="btn-sm btn-primary"
+                    style={{ textDecoration: "none", borderRadius: "10px" }}
+                  >
+                    Editar
+                  </Link>
 
                   <BotonEliminar onClick={() => deleteRegistre(item.id)}>
                     Delete
@@ -92,10 +91,6 @@ export const CrudApp = () => {
           </THBODY>
         </table>
       </div>
-      <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
-        {/* <FormularioApp /> */}
-        <FormularioEditarCliente/>
-      </Modal>
     </ContenedorPrincipal>
   );
 };

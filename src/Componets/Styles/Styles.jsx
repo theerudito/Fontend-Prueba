@@ -39,6 +39,20 @@ export const BotonEditar = styled.button`
   }
 `;
 
+export const BotonEdit = styled.link`
+  background-color: tomato;
+  text-decoration: none;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  color: white;
+
+  :hover {
+    background-color: orange;
+    color: black;
+  }
+`;
+
 export const BotonEliminar = styled.button`
   background-color: red;
   color: white;
@@ -60,8 +74,23 @@ export const TH = styled.th`
   background-color: purple;
 `;
 
-
 export const THBODY = styled.tbody`
   background-color: gray;
   color: white;
 `;
+
+export const Alerta = styled.div`
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: greenyellow;
+  border-radius: 10px;
+  width: 250px;
+  margin-top: 20px;
+`;
+
+export const TituloAlert = styled.p`
+  color: black;
+  margin: auto;
+`
