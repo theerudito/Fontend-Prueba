@@ -1,0 +1,52 @@
+{
+  "clients": [
+    {
+      "id": 0,
+      "firstName": "Goku",
+      "lastName": "Kakaroto",
+      "direction": "Peru",
+      "phone": "099999999",
+      "email": "kakaroto@email.com"
+    },
+    {
+      "id": 1,
+      "firstName": "Vegeta",
+      "lastName": "El Principe",
+      "direction": "Venezuela",
+      "phone": "0999545778",
+      "email": "elprincipedls@email.com"
+    },
+    {
+      "id": 2,
+      "firstName": "Milk",
+      "lastName": "Kakaroto",
+      "direction": "20-15-2017",
+      "phone": "099977548",
+      "email": "milkdekakaroto@email.com"
+    },
+    {
+      "id": 3,
+      "firstName": "Bulma",
+      "lastName": "El Principe",
+      "direction": "Ecuador",
+      "phone": "0999547778",
+      "email": "esposadeprincipevegeta@email.com"
+    },
+    {
+      "id": 4,
+      "firstName": "Picoro",
+      "lastName": "Kamisama",
+      "direction": "Chile",
+      "phone": "0998547778",
+      "email": "picorodaimaku@email.com"
+    },
+    {
+      "id": 5,
+      "firstName": "Jorge",
+      "lastName": "Loor",
+      "direction": "Santo Domingo de los tchachila ",
+      "phone": "0980608064",
+      "email": "erudito.tv@gmail.com"
+    }
+  ]
+}
