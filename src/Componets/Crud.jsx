@@ -65,8 +65,8 @@ export const CrudApp = () => {
             </tr>
           </THEAD>
           <THBODY>
-            {data.map((item) => (
-              <tr key={item.id}>
+            {data.map((item, id) => (
+              <tr key={id}>
                 <td>{item.id} </td>
                 <td>{item.firstName} </td>
                 <td>{item.lastName} </td>

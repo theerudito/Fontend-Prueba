@@ -44,7 +44,7 @@ export const Edi = () => {
 
   const updateById = async () => {
     const res = await axios.get(`${url}/${id}`);
-    console.log(res);
+    //console.log(res);
     setFirstName(res.data.firstName);
     setLastName(res.data.lastName);
     setPhone(res.data.phone);
