@@ -39,8 +39,6 @@ export const BotonEditar = styled.button`
   }
 `;
 
-
-
 export const BotonEliminar = styled.button`
   background-color: red;
   color: white;
@@ -81,4 +79,18 @@ export const Alerta = styled.div`
 export const TituloAlert = styled.p`
   color: black;
   margin: auto;
-`
+`;
+
+export const ContainerSeachInput = styled.div`
+  margin-left: auto;
+  width: 200px;
+  margin-bottom: 10px;
+  contain: auto;
+`;
+
+export const SeachInput = styled.input`
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid purple; 
+  display: flex;
+`;

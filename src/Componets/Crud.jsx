@@ -1,45 +1,31 @@
-import React, { useState } from "react";
+import { useContext } from "react";
 import { useEffect } from "react";
+import { userContext } from "./ContextProvider/UserProvider";
 import { FormEdit, FormularioCrearCliente } from "./Fomulario/Formulario";
-import { ApiRestData } from "./Helpers/ApiRest";
-import { deleteClient, getallClients, getByIdClient } from "./Helpers/Helpers";
+
 import { useModal } from "./Hooks/useModal";
 import { Modal } from "./Modal/Modal";
 import {
   BotonCrear,
   BotonEditar,
   BotonEliminar,
+  ContainerSeachInput,
   ContenedorPrincipal,
   TH,
   THBODY,
   THEAD,
   TituloPrincipal,
+  SeachInput,
 } from "./Styles/Styles";
 
 export const CrudApp = () => {
-  const [data, setData] = useState(ApiRestData);
   const [isOpenModalCreate, openModalCreate, closeModalCreate] = useModal(true);
   const [isOpenModalEdit, openModalEdit, closeModalEdit] = useModal(true);
-
-  const GetDatas = async () => {
-    let res = await getallClients();
-    setData(res.data);
-  };
+  const { user, getAllUser, getOneUser, deleteUser } = useContext(userContext);
 
   useEffect(() => {
-    GetDatas();
+    getAllUser();
   }, []);
-
-  const deleteRegistre = async (id) => {
-    await deleteClient(id);
-    GetDatas();
-  };
-
-  const getByIdUser = async (id) => {
-    const data = await getByIdClient(id);
-    console.log(data);
-    return data;
-  };
 
   return (
     <ContenedorPrincipal>
@@ -53,38 +39,42 @@ export const CrudApp = () => {
       </Modal>
 
       <div className="container">
+        <ContainerSeachInput>
+          <SeachInput type="text" placeholder="Search" className="container" />
+        </ContainerSeachInput>
         <table className="table table-hover">
           <THEAD>
             <tr>
               <TH>ID</TH>
               <th>FirstName</th>
               <th>LastNane</th>
-              <th>Direction</th>
+              <th>Country</th>
               <th>Phone</th>
               <th>Email</th>
               <th>Actions</th>
             </tr>
           </THEAD>
           <THBODY>
-            {data.map((item, id) => (
+            {user.map((item, id) => (
               <tr key={id}>
                 <td>{item.id} </td>
                 <td>{item.firstName} </td>
                 <td>{item.lastName} </td>
-                <td>{item.direction} </td>
+                <td>{item.country} </td>
                 <td>{item.phone} </td>
                 <td>{item.email} </td>
                 <td>
                   <BotonEditar
-                    onClick={() => openModalEdit(getByIdUser(item.id))}
+                    onClick={() => openModalEdit(getOneUser(item.id))}
                   >
                     Editar
                   </BotonEditar>
+
                   <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
-                    <FormEdit data={getByIdUser} />
+                    <FormEdit idUser={id} dataUser={item} />
                   </Modal>
 
-                  <BotonEliminar onClick={() => deleteRegistre(item.id)}>
+                  <BotonEliminar onClick={() => deleteUser(item.id)}>
                     Delete
                   </BotonEliminar>
                 </td>
@@ -92,10 +82,6 @@ export const CrudApp = () => {
             ))}
           </THBODY>
         </table>
-
-        <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
-          <FormEdit data={getByIdUser} />
-        </Modal>
       </div>
     </ContenedorPrincipal>
   );

@@ -1,86 +1,158 @@
-import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { userContext } from "../ContextProvider/UserProvider";
+import { POSTClient, PUTClient } from "../Helpers/Helpers";
 import { ButtonSave } from "../Modal/Styles";
-import { addClient, getByIdClient } from "../Helpers/Helpers";
 import { Alerta, TituloAlert } from "../Styles/Styles";
-import { getByIdUser } from "../Crud";
-
-const inicialValues = {
-  id: 0,
-  firstName: "",
-  lastName: "",
-  direction: "",
-  phone: "",
-  email: "",
-};
 
 export const FormularioCrearCliente = () => {
-  const [formData, setFormData] = useState(inicialValues);
-  const { firstName, lastName, direction, phone, email } = formData;
   const [guardado, setGuardado] = useState(false);
+  const { getAllUser } = useContext(userContext);
 
-  const onValueChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const SaveData = async (e) => {
+  const SaveData = async (data) => {
     setGuardado(true);
-    e.preventDefault();
-    await addClient(formData);
-
+    await POSTClient(data);
+    reset();
+    getAllUser();
     setTimeout(() => setGuardado(), 2000);
-    setFormData(inicialValues);
   };
 
   return (
     <>
       <h4>Create Client</h4>
-      <form onSubmit={SaveData}>
+      <form onClick={handleSubmit(SaveData)}>
+        <div>
+          {errors.firstName && (
+            <span
+              style={{ color: "red", fontSize: "12px", marginBottom: "20px" }}
+            >
+              {errors.firstName.message}
+            </span>
+          )}
+        </div>
+
         <input
           className="form-control mb-2"
           placeholder="FirstName"
           type="text"
           name="firstName"
-          value={firstName}
-          onChange={(e) => onValueChange(e)}
-          required
+          {...register("firstName", {
+            required: {
+              value: true,
+              message: "Ingresar un nombre",
+              maxLenght: 20,
+            },
+          })}
         />
+
+        <div>
+          {errors.lastName && (
+            <span
+              style={{ color: "red", fontSize: "12px", marginBottom: "20px" }}
+            >
+              {errors.lastName.message}
+            </span>
+          )}
+        </div>
+
         <input
           className="form-control mb-2"
           placeholder="LastName"
           type="text"
           name="lastName"
-          value={lastName}
-          onChange={(e) => onValueChange(e)}
-          required
+          {...register("lastName", {
+            required: {
+              value: true,
+              message: "Ingresar un apellido",
+              maxLenght: 20,
+            },
+          })}
         />
+
+        <div>
+          {errors.country && (
+            <span
+              style={{ color: "red", fontSize: "12px", marginBottom: "20px" }}
+            >
+              {errors.country.message}
+            </span>
+          )}
+        </div>
+
         <input
           className="form-control mb-2"
-          placeholder="Direction"
+          placeholder="Country"
           type="text"
-          name="direction"
-          value={direction}
-          onChange={(e) => onValueChange(e)}
-          required
+          name="country"
+          {...register("country", {
+            required: {
+              value: true,
+              message: "Ingresar un pais",
+              maxLenght: 20,
+            },
+          })}
         />
+
+        <div>
+          {errors.phone && (
+            <span
+              style={{ color: "red", fontSize: "12px", marginBottom: "20px" }}
+            >
+              {errors.phone.message}
+            </span>
+          )}
+        </div>
 
         <input
           className="form-control mb-2"
           placeholder="Phone"
           type="number"
           name="phone"
-          value={phone}
-          onChange={(e) => onValueChange(e)}
-          required
+          {...register("phone", {
+            required: {
+              value: true,
+              message: "telefono requerido",
+            },
+            minLength: {
+              value: 10,
+              message: "Debe tener como minimo 10 caracteres",
+            },
+          })}
         />
+
+        <div>
+          {errors.email && (
+            <span
+              style={{ color: "red", fontSize: "12px", marginBottom: "20px" }}
+            >
+              {errors.email.message}
+            </span>
+          )}
+        </div>
 
         <input
           placeholder="Email"
           className="form-control"
           type="text"
           name="email"
-          value={email}
-          onChange={(e) => onValueChange(e)}
-          required
+          {...register("email", {
+            required: {
+              value: true,
+              message: "debes ingresar un email",
+            },
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
+              message: "el formato del email es incorrecto",
+            },
+          })}
         />
 
         <ButtonSave type="submit" style={{ margin: "30px auto" }}>
@@ -96,57 +168,70 @@ export const FormularioCrearCliente = () => {
 
 //====================================================================
 
-export const FormEdit = (data) => {
-  console.log(data)
-  const [formData, setFormData] = useState(inicialValues);
-  const { firstName, lastName, direction, phone, email } = formData;
+export const FormEdit = (userId, userData) => {
+  console.log(userId.id);
+  console.log(userData);
+
   const [guardado, setGuardado] = useState(false);
+  const { getAllUser, updateUser } = useContext(userContext);
 
-  const onValueChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const UpdateData = async (data) => {
+    setGuardado(true);
+    await updateUser(data);
+    reset();
+    getAllUser();
+    setTimeout(() => setGuardado(), 2000);
   };
-
-  const updateClient = async (e, id) => {
-   
-  };
-
-
-  const getById = async () => {
-    
-  };
-
-  //getById();
 
   return (
     <>
       <h4>Edit Client</h4>
-      <form onSubmit={updateClient}>
+      <form onClick={handleSubmit(UpdateData)}>
         <input
           className="form-control mb-2"
           placeholder="FirstName"
           type="text"
           name="firstName"
-          value={firstName}
-          onChange={(e) => onValueChange(e)}
-          required
+          {...register("firstName", {
+            required: {
+              value: true,
+              message: "Ingresar un nombre",
+              maxLenght: 20,
+            },
+          })}
         />
         <input
           className="form-control mb-2"
           placeholder="LastName"
           type="text"
           name="lastName"
-          value={lastName}
-          onChange={(e) => onValueChange(e)}
-          required
+          {...register("lastName", {
+            required: {
+              value: true,
+              message: "Ingresar un apellido",
+              maxLenght: 20,
+            },
+          })}
         />
         <input
           className="form-control mb-2"
-          placeholder="Direction"
+          placeholder="Country"
           type="text"
-          name="direction"
-          value={direction}
-          onChange={(e) => onValueChange(e)}
-          required
+          name="country"
+          {...register("country", {
+            required: {
+              value: true,
+              message: "Ingresar un pais",
+              maxLenght: 20,
+            },
+          })}
         />
 
         <input
@@ -154,9 +239,16 @@ export const FormEdit = (data) => {
           placeholder="Phone"
           type="number"
           name="phone"
-          value={phone}
-          onChange={(e) => onValueChange(e)}
-          required
+          {...register("phone", {
+            required: {
+              value: true,
+              message: "telefono requerido",
+            },
+            minLength: {
+              value: 10,
+              message: "Debe tener como minimo 10 caracteres",
+            },
+          })}
         />
 
         <input
@@ -164,9 +256,16 @@ export const FormEdit = (data) => {
           className="form-control"
           type="text"
           name="email"
-          value={email}
-          onChange={(e) => onValueChange(e)}
-          required
+          {...register("email", {
+            required: {
+              value: true,
+              message: "debes ingresar un numero",
+            },
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
+              message: "el formato del email es incorrecto",
+            },
+          })}
         />
 
         <ButtonSave type="submit" style={{ margin: "30px auto" }}>
