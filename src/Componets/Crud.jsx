@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { userContext } from "./ContextProvider/UserProvider";
 import { FormEdit, FormularioCrearCliente } from "./Fomulario/Formulario";
@@ -22,10 +23,24 @@ export const CrudApp = () => {
   const [isOpenModalCreate, openModalCreate, closeModalCreate] = useModal(true);
   const [isOpenModalEdit, openModalEdit, closeModalEdit] = useModal(true);
   const { user, getAllUser, getOneUser, deleteUser } = useContext(userContext);
+  const [searh, setSeach] = useState("");
 
   useEffect(() => {
     getAllUser();
   }, []);
+
+  let result = !user
+    ? user
+    : user.filter(
+        (data) =>
+          data.firstName.toLowerCase().includes(searh.toLowerCase()) ||
+          data.lastName.toLowerCase().includes(searh.toLowerCase())  ||
+          data.country.toLowerCase().includes(searh.toLowerCase())
+      );
+
+  const seachUser = (e) => {
+    setSeach(e.target.value);
+  };
 
   return (
     <ContenedorPrincipal>
@@ -40,7 +55,13 @@ export const CrudApp = () => {
 
       <div className="container">
         <ContainerSeachInput>
-          <SeachInput type="text" placeholder="Search" className="container" />
+          <SeachInput
+            type="text"
+            placeholder="Search"
+            value={searh}
+            onChange={seachUser}
+            className="container"
+          />
         </ContainerSeachInput>
         <table className="table table-hover">
           <THEAD>
@@ -55,7 +76,7 @@ export const CrudApp = () => {
             </tr>
           </THEAD>
           <THBODY>
-            {user.map((item, id) => (
+            {result.map((item, id) => (
               <tr key={id}>
                 <td>{item.id} </td>
                 <td>{item.firstName} </td>

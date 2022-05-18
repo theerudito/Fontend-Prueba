@@ -91,6 +91,6 @@ export const ContainerSeachInput = styled.div`
 export const SeachInput = styled.input`
   background-color: white;
   border-radius: 10px;
-  border: 1px solid purple; 
+  border: 1px solid gray;
   display: flex;
 `;
