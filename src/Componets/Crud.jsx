@@ -1,15 +1,13 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FormularioCrearCliente } from "./Fomulario/Formulario";
+import { FormEdit, FormularioCrearCliente } from "./Fomulario/Formulario";
 import { ApiRestData } from "./Helpers/ApiRest";
-import { getallClients } from "./Helpers/Helpers";
-
+import { deleteClient, getallClients, getByIdClient } from "./Helpers/Helpers";
 import { useModal } from "./Hooks/useModal";
 import { Modal } from "./Modal/Modal";
 import {
   BotonCrear,
+  BotonEditar,
   BotonEliminar,
   ContenedorPrincipal,
   TH,
@@ -18,11 +16,10 @@ import {
   TituloPrincipal,
 } from "./Styles/Styles";
 
-const url = "http://localhost:5000/clients";
-
 export const CrudApp = () => {
   const [data, setData] = useState(ApiRestData);
-  const [isOpenModalCrear, openModalCrear, closeModalCrear] = useModal(true);
+  const [isOpenModalCreate, openModalCreate, closeModalCreate] = useModal(true);
+  const [isOpenModalEdit, openModalEdit, closeModalEdit] = useModal(true);
 
   const GetDatas = async () => {
     let res = await getallClients();
@@ -34,20 +31,24 @@ export const CrudApp = () => {
   }, []);
 
   const deleteRegistre = async (id) => {
-    await axios.delete(`${url}/${id}`);
-    console.log("eliminando");
+    await deleteClient(id);
     GetDatas();
+  };
+
+  const getByIdUser = async (id) => {
+    const data = await getByIdClient(id);
+    console.log(data);
+    return data;
   };
 
   return (
     <ContenedorPrincipal>
       <TituloPrincipal>Crud Principal</TituloPrincipal>
       <div>
-        <BotonCrear onClick={openModalCrear}>Create</BotonCrear>
+        <BotonCrear onClick={openModalCreate}>Create</BotonCrear>
       </div>
 
-      <Modal isOpen={isOpenModalCrear} closeModal={closeModalCrear}>
-        {/* <FormularioCrear /> */}
+      <Modal isOpen={isOpenModalCreate} closeModal={closeModalCreate}>
         <FormularioCrearCliente />
       </Modal>
 
@@ -74,13 +75,14 @@ export const CrudApp = () => {
                 <td>{item.phone} </td>
                 <td>{item.email} </td>
                 <td>
-                  <Link
-                    to={`/edit/${item.id}`}
-                    className="btn-sm btn-primary"
-                    style={{ textDecoration: "none", borderRadius: "10px" }}
+                  <BotonEditar
+                    onClick={() => openModalEdit(getByIdUser(item.id))}
                   >
                     Editar
-                  </Link>
+                  </BotonEditar>
+                  <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
+                    <FormEdit data={getByIdUser} />
+                  </Modal>
 
                   <BotonEliminar onClick={() => deleteRegistre(item.id)}>
                     Delete
@@ -90,6 +92,10 @@ export const CrudApp = () => {
             ))}
           </THBODY>
         </table>
+
+        <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
+          <FormEdit data={getByIdUser} />
+        </Modal>
       </div>
     </ContenedorPrincipal>
   );

@@ -4,10 +4,6 @@ import { Edi } from "./Componets/Edi";
 import { Rutas } from "./Componets/Rutas";
 
 
-
-
-
-
 function App() {
   return (
     <>

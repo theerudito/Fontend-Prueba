@@ -39,19 +39,7 @@ export const BotonEditar = styled.button`
   }
 `;
 
-export const BotonEdit = styled.link`
-  background-color: tomato;
-  text-decoration: none;
-  color: black;
-  border: none;
-  border-radius: 10px;
-  color: white;
 
-  :hover {
-    background-color: orange;
-    color: black;
-  }
-`;
 
 export const BotonEliminar = styled.button`
   background-color: red;
