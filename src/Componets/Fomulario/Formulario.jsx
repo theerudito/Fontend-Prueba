@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { userContext } from "../ContextProvider/UserProvider";
-import { POSTClient, PUTClient } from "../Helpers/Helpers";
+import { POSTClient } from "../Helpers/Helpers";
 import { ButtonSave } from "../Modal/Styles";
 import { Alerta, TituloAlert } from "../Styles/Styles";
 
@@ -178,8 +178,8 @@ export const FormularioCrearCliente = () => {
 
 //====================================================================
 
-export const FormEdit = (userId, userData) => {
-  console.log(userId.id);
+export const FormEdit = ( userId, userData ) => {
+  console.log(userId);
   console.log(userData);
 
   const [guardado, setGuardado] = useState(false);

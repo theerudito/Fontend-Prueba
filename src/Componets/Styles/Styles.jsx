@@ -27,43 +27,30 @@ export const BotonCrear = styled.button`
 `;
 
 export const BotonEditar = styled.button`
-  background-color: tomato;
+  background-color: #37cafb;
   color: black;
   border: none;
   border-radius: 10px;
-  color: white;
- height: 35px;
+  height: 25px;
+  margin: auto;
   :hover {
-    background-color: orange;
-    color: black;
+    background-color: #587fd6;
+    color: white;
   }
 `;
 
 export const BotonEliminar = styled.button`
-  background-color: red;
-  color: white;
+  background-color: #fa210a;
+  color: black;
   border: none;
   border-radius: 10px;
   margin-left: 20px;
-  height: 35px;
+  height: 25px;
+  margin: auto;
   :hover {
-    background-color: rebeccapurple;
-    color: black;
+    background-color: #fa0f0a;
+    color: white;
   }
-`;
-
-export const THEAD = styled.thead`
-  background-color: purple;
-  color: white;
-`;
-
-export const TH = styled.th`
-  background-color: purple;
-`;
-
-export const THBODY = styled.tbody`
-  background-color: gray;
-  color: white;
 `;
 
 export const Alerta = styled.div`
@@ -117,45 +104,93 @@ export const LoaderImg = styled.img`
 `;
 
 export const Profie = styled.img`
-  width: 35px;
+  width: 30px;
   background-color: aquamarine;
   margin: 2px auto;
   display: flex;
   border-radius: 50%;
   border: solid 1px white;
   object-fit: contain;
-`;
-
-export const ContainerListUser = styled.div`
-  background-color: gray;
-  color: white;
-  :hover {
-    background-color: greenyellow;
-    color: black;
-  }
+  align-items: center;
+  justify-content: center;
 `;
 
 export const UserList = styled.li`
   list-style: none;
+  margin: auto;
   display: flex;
 `;
 
 export const TitlesUser = styled.li`
- color: white;
+  color: white;
   margin: auto;
   list-style: none;
   display: flex;
 `;
 
 export const TitlesUserUl = styled.ul`
-  background-color: none ;
   margin: 2px auto;
   display: flex;
   background-color: purple;
+  border: solid 1px black;
 `;
 
 export const TitlesUserUl2 = styled.ul`
-  background-color: none ;
-  margin: 2px auto;
+  margin: 1px;
   display: flex;
+  border: solid 1px black;
+`;
+
+export const ContainerID = styled.div`
+  overflow: hidden;
+  white-space: nowrap;
+  margin: auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  display: grid;
+`;
+
+export const ContainerAvatar = styled(ContainerID)`
+  width: 50px;
+  display: grid;
+`;
+
+export const ContainerFirstName = styled(ContainerID)`
+  width: 100px;
+  display: grid;
+`;
+export const ContainerLastName = styled(ContainerID)`
+  width: 100px;
+  display: grid;
+`;
+
+export const ContainerCountry = styled(ContainerID)`
+  width: 150px;
+  display: grid;
+`;
+
+export const ContainerPhone = styled(ContainerID)`
+  width: 100px;
+  display: grid;
+`;
+
+export const ContainerEmail = styled(ContainerID)`
+  width: 200px;
+  display: grid;
+`;
+
+export const ContainerActiones = styled.div`
+  width: 140px;
+  display: grid;
+`;
+
+export const ContainerTable = styled.div`
+  background-color: gray;
+  color: white;
+  :hover {
+    background-color: greenyellow;
+    color: black;
+  }
 `;

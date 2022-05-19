@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { userContext } from "./ContextProvider/UserProvider";
 import { FormEdit, FormularioCrearCliente } from "./Fomulario/Formulario";
-
 import { useModal } from "./Hooks/useModal";
 import { Skeleton } from "./Loader/skeleton";
 import { Modal } from "./Modal/Modal";
@@ -13,9 +12,6 @@ import {
   BotonEliminar,
   ContainerSeachInput,
   ContenedorPrincipal,
-  TH,
-  THBODY,
-  THEAD,
   TituloPrincipal,
   SeachInput,
   ContainerLoader,
@@ -26,6 +22,16 @@ import {
   TitlesUser,
   TitlesUserUl,
   TitlesUserUl2,
+  ContainerID,
+  ContainerAvatar,
+  ContainerFirstName,
+  ContainerLastName,
+  ContainerCountry,
+  ContainerPhone,
+  ContainerEmail,
+  ContainerEdit,
+  ContainerActiones,
+  ContainerTable,
 } from "./Styles/Styles";
 
 export const CrudApp = () => {
@@ -75,135 +81,88 @@ export const CrudApp = () => {
         </ContainerSeachInput>
 
         <TitlesUserUl>
-          <TitlesUser
-            style={{
-              marginRight: "auto",
-              width: "20px",
-              background: "red",
-              display: "flex",
-            }}
-          >
-            ID
-          </TitlesUser>
-          <TitlesUser>Avavar</TitlesUser>
-          <TitlesUser>Name</TitlesUser>
-          <TitlesUser>LastName</TitlesUser>
-          <TitlesUser>Country</TitlesUser>
-          <TitlesUser>Phone</TitlesUser>
-          <TitlesUser>Email</TitlesUser>
-          <TitlesUser>Actions</TitlesUser>
+          <ContainerID>
+            <TitlesUser>ID</TitlesUser>
+          </ContainerID>
+
+          <ContainerAvatar>
+            <TitlesUser>Avavar</TitlesUser>
+          </ContainerAvatar>
+
+          <ContainerFirstName>
+            <TitlesUser>Name</TitlesUser>
+          </ContainerFirstName>
+
+          <ContainerLastName>
+            <TitlesUser>LastName</TitlesUser>
+          </ContainerLastName>
+
+          <ContainerCountry>
+            <TitlesUser>Country</TitlesUser>
+          </ContainerCountry>
+
+          <ContainerPhone>
+            <TitlesUser>Phone</TitlesUser>
+          </ContainerPhone>
+
+          <ContainerEmail>
+            <TitlesUser>Email</TitlesUser>
+          </ContainerEmail>
+
+          <ContainerActiones>
+            <TitlesUser>Actions</TitlesUser>
+          </ContainerActiones>
         </TitlesUserUl>
 
         {result.length > 0 ? (
           result.map((userData) => (
-            <ContainerListUser key={userData.id}>
-              <TitlesUserUl2>
-                <div
-                  style={{
-                    marginRight: "auto",
-                    width: "40px",
-                    background: "red",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <UserList>{userData.id}</UserList>
-                </div>
+            
+              <ContainerTable  key={userData.id}>
+                <TitlesUserUl2>
+                  <ContainerID>
+                    <UserList>{userData.id}</UserList>
+                  </ContainerID>
 
-                <div
-                  style={{
-                    marginRight: "auto",
-                    width: "40px",
-                    background: "red",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Profie src={userData.pic} alt="pic" />
-                </div>
+                  <ContainerAvatar>
+                    <Profie src={userData.pic} alt="pic" />
+                  </ContainerAvatar>
 
-                <div
-                  style={{
-                    marginRight: "auto",
-                    width: "40px",
-                    background: "red",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <UserList>{userData.firstName}</UserList>
-                </div>
+                  <ContainerFirstName>
+                    <UserList>{userData.firstName}</UserList>
+                  </ContainerFirstName>
 
-                <div
-                  style={{
-                    marginRight: "auto",
-                    width: "100px",
-                    background: "red",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <UserList>{userData.lastName}</UserList>
-                </div>
+                  <ContainerLastName>
+                    <UserList>{userData.lastName}</UserList>
+                  </ContainerLastName>
 
-                <div
-                  style={{
-                    marginRight: "auto",
-                    width: "100px",
-                    background: "red",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <UserList>{userData.country}</UserList>
-                </div>
+                  <ContainerCountry>
+                    <UserList>{userData.country}</UserList>
+                  </ContainerCountry>
 
-                <div
-                  style={{
-                    marginRight: "auto",
-                    width: "100px",
-                    background: "red",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <UserList>{userData.phone}</UserList>
-                </div>
+                  <ContainerPhone>
+                    <UserList>{userData.phone}</UserList>
+                  </ContainerPhone>
 
-                <div
-                  style={{
-                    marginRight: "auto",
-                    width: "150px",
-                    background: "red",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <UserList>{userData.email}</UserList>
-                </div>
+                  <ContainerEmail>
+                    <UserList>{userData.email}</UserList>
+                  </ContainerEmail>
 
-                <BotonEditar
-                  onClick={() => openModalEdit(getOneUser(userData.id))}
-                >
-                  Editar
-                </BotonEditar>
+                  <BotonEditar
+                    onClick={() => openModalEdit(getOneUser(userData.id))}
+                  >
+                    Editar
+                  </BotonEditar>
 
-                <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
-                  <FormEdit idUser={userData.id} dataUser={userData} />
-                </Modal>
+                  <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
+                    <FormEdit idUser={userData.pic} dataUser={userData} />
+                  </Modal>
 
-                <BotonEliminar onClick={() => deleteUser(userData.id)}>
-                  Delete
-                </BotonEliminar>
-              </TitlesUserUl2>
-            </ContainerListUser>
+                  <BotonEliminar onClick={() => deleteUser(userData.id)}>
+                    Delete
+                  </BotonEliminar>
+                </TitlesUserUl2>
+              </ContainerTable>
+           
           ))
         ) : (
           <ContainerLoader>
@@ -219,54 +178,3 @@ export const CrudApp = () => {
     </ContenedorPrincipal>
   );
 };
-
-{
-  /* <table className="table table-hover">
-          <THEAD>
-            <tr>
-              <th>Avatar</th>
-              <TH>ID</TH>
-
-              <th>FirstName</th>
-              <th>LastNane</th>
-              <th>Country</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </THEAD>
-
-          <THBODY>
-            {result.length > 0 ? (
-              result.map((item, id) => (
-                <tr key={id}>
-                  <Profie src={item.pic} alt="pic" />
-                  <td>{item.id} </td>
-                  <td>{item.firstName}</td>
-                  <td>{item.lastName} </td>
-                  <td>{item.country} </td>
-                  <td>{item.phone} </td>
-                  <td>{item.email} </td>
-                  <td>
-                    <BotonEditar
-                      onClick={() => openModalEdit(getOneUser(item.id))}
-                    >
-                      Editar
-                    </BotonEditar>
-
-                    <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
-                      <FormEdit idUser={id} dataUser={item} />
-                    </Modal>
-
-                    <BotonEliminar onClick={() => deleteUser(item.id)}>
-                      Delete
-                    </BotonEliminar>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <ContainerLoader>{loader && <Skeleton />}</ContainerLoader>
-            )}
-          </THBODY>
-        </table> */
-}
