@@ -18,7 +18,6 @@ import {
   LoaderImg,
   Profie,
   UserList,
-  ContainerListUser,
   TitlesUser,
   TitlesUserUl,
   TitlesUserUl2,
@@ -29,7 +28,6 @@ import {
   ContainerCountry,
   ContainerPhone,
   ContainerEmail,
-  ContainerEdit,
   ContainerActiones,
   ContainerTable,
 } from "./Styles/Styles";
@@ -116,53 +114,51 @@ export const CrudApp = () => {
 
         {result.length > 0 ? (
           result.map((userData) => (
-            
-              <ContainerTable  key={userData.id}>
-                <TitlesUserUl2>
-                  <ContainerID>
-                    <UserList>{userData.id}</UserList>
-                  </ContainerID>
+            <ContainerTable key={userData.id}>
+              <TitlesUserUl2>
+                <ContainerID>
+                  <UserList>{userData.id}</UserList>
+                </ContainerID>
 
-                  <ContainerAvatar>
-                    <Profie src={userData.pic} alt="pic" />
-                  </ContainerAvatar>
+                <ContainerAvatar>
+                  <Profie src={userData.pic} alt="pic" />
+                </ContainerAvatar>
 
-                  <ContainerFirstName>
-                    <UserList>{userData.firstName}</UserList>
-                  </ContainerFirstName>
+                <ContainerFirstName>
+                  <UserList>{userData.firstName}</UserList>
+                </ContainerFirstName>
 
-                  <ContainerLastName>
-                    <UserList>{userData.lastName}</UserList>
-                  </ContainerLastName>
+                <ContainerLastName>
+                  <UserList>{userData.lastName}</UserList>
+                </ContainerLastName>
 
-                  <ContainerCountry>
-                    <UserList>{userData.country}</UserList>
-                  </ContainerCountry>
+                <ContainerCountry>
+                  <UserList>{userData.country}</UserList>
+                </ContainerCountry>
 
-                  <ContainerPhone>
-                    <UserList>{userData.phone}</UserList>
-                  </ContainerPhone>
+                <ContainerPhone>
+                  <UserList>{userData.phone}</UserList>
+                </ContainerPhone>
 
-                  <ContainerEmail>
-                    <UserList>{userData.email}</UserList>
-                  </ContainerEmail>
+                <ContainerEmail>
+                  <UserList>{userData.email}</UserList>
+                </ContainerEmail>
 
-                  <BotonEditar
-                    onClick={() => openModalEdit(getOneUser(userData.id))}
-                  >
-                    Editar
-                  </BotonEditar>
+                <BotonEditar
+                  onClick={() => openModalEdit(getOneUser(userData.id))}
+                >
+                  Editar
+                </BotonEditar>
 
-                  <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
-                    <FormEdit idUser={userData.pic} dataUser={userData} />
-                  </Modal>
+                <Modal isOpen={isOpenModalEdit} closeModal={closeModalEdit}>
+                  <FormEdit idUser={userData.pic} dataUser={userData} />
+                </Modal>
 
-                  <BotonEliminar onClick={() => deleteUser(userData.id)}>
-                    Delete
-                  </BotonEliminar>
-                </TitlesUserUl2>
-              </ContainerTable>
-           
+                <BotonEliminar onClick={() => deleteUser(userData.id)}>
+                  Delete
+                </BotonEliminar>
+              </TitlesUserUl2>
+            </ContainerTable>
           ))
         ) : (
           <ContainerLoader>

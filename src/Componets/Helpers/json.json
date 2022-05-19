@@ -1,13 +1,13 @@
 {
   "clients": [
     {
-      "firstName": "Jorge",
-      "lastName": "Loor",
+      "firstName": "Goku",
+      "lastName": "Sayan",
       "direction": "Ecuador",
-      "phone": "0960806054",
-      "email": "erudito.tv@gmail.com",
+      "phone": "093336054",
+      "email": "erudito.tv@3l.com",
       "country": "0945454",
-      "phoneOffice": "54544554",
+      "pic": "https://avatars.dicebear.com/api/micah/st.svg",
       "id": 0
     },
     {
@@ -16,6 +16,7 @@
       "country": "Venezuela",
       "phone": "0999545778",
       "email": "elprincipedls@email.com",
+      "pic": "https://avatars.dicebear.com/api/micah/ss.svg",
       "id": 1
     },
     {
@@ -24,7 +25,8 @@
       "lastName": "Kakaroto",
       "country": "Argentina",
       "phone": "099977548",
-      "email": "milkdekakaroto@email.com"
+      "email": "milkdekakaroto@email.com",
+      "pic": "https://avatars.dicebear.com/api/micah/rs.svg"
     },
     {
       "id": 3,
@@ -32,6 +34,7 @@
       "lastName": "El Principe",
       "country": "Ecuador",
       "phone": "0999547778",
+      "pic": "https://avatars.dicebear.com/api/micah/ees.svg",
       "email": "esposadeprincipevegeta@email.com"
     },
     {
@@ -40,6 +43,7 @@
       "lastName": "Kamisama",
       "country": "Chile",
       "phone": "0998547778",
+      "pic": "https://avatars.dicebear.com/api/micah/3s.svg",
       "email": "picorodaimaku@email.com"
     }
    
