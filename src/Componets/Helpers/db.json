@@ -4,33 +4,19 @@
       "firstName": "Jorge",
       "lastName": "Loor",
       "country": "Ecuador",
-      "phone": "55435435435435",
+      "phone": "0960806054",
       "email": "erudito.tv@gmail.com",
+      "pic": "https://avatars.dicebear.com/api/micah/Jorge.svg",
       "id": 1
     },
     {
-      "firstName": "Daniel",
+      "firstName": "Jorge",
       "lastName": "Loor",
       "country": "Ecuador",
-      "phone": "3324324234",
-      "email": "danie@dfdfdfs.com",
+      "phone": "0868454444",
+      "email": "telomil263@duetube.com",
+      "pic": "https://avatars.dicebear.com/api/micah/Jorge.svg",
       "id": 2
-    },
-    {
-      "firstName": "sdasdasd",
-      "lastName": "Mantuano",
-      "country": "Ecuador",
-      "phone": "423423434324",
-      "email": "erudito.tv@gmail.com",
-      "id": 3
-    },
-    {
-      "firstName": "wwqewqe",
-      "lastName": "qweqwewqe",
-      "country": "Chile",
-      "phone": "4342334324324",
-      "email": "erud2ito.tv@gmail.com",
-      "id": 4
     }
   ]
 }

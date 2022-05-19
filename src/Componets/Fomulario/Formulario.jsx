@@ -17,9 +17,19 @@ export const FormularioCrearCliente = () => {
     formState: { errors },
   } = useForm();
 
+  let firstName = "firstName";
   const SaveData = async (data) => {
+    let name = data.firstName;
+    const formData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      country: data.country,
+      phone: data.phone,
+      email: data.email,
+      pic: `https://avatars.dicebear.com/api/micah/${name}.svg`,
+    };
     setGuardado(true);
-    await POSTClient(data);
+    await POSTClient(formData);
     reset();
     getAllUser();
     setTimeout(() => setGuardado(), 2000);
@@ -43,8 +53,8 @@ export const FormularioCrearCliente = () => {
           className="form-control mb-2"
           placeholder="FirstName"
           type="text"
-          name="firstName"
-          {...register("firstName", {
+          name={firstName}
+          {...register(firstName, {
             required: {
               value: true,
               message: "Ingresar un nombre",

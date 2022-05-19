@@ -32,7 +32,7 @@ export const BotonEditar = styled.button`
   border: none;
   border-radius: 10px;
   color: white;
-
+ height: 35px;
   :hover {
     background-color: orange;
     color: black;
@@ -45,6 +45,7 @@ export const BotonEliminar = styled.button`
   border: none;
   border-radius: 10px;
   margin-left: 20px;
+  height: 35px;
   :hover {
     background-color: rebeccapurple;
     color: black;
@@ -92,5 +93,69 @@ export const SeachInput = styled.input`
   background-color: white;
   border-radius: 10px;
   border: 1px solid gray;
+  display: flex;
+`;
+
+export const ContainerLoader = styled.div`
+  position: relative;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: auto;
+`;
+
+export const LoaderImg = styled.img`
+  background: green;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: auto;
+`;
+
+export const Profie = styled.img`
+  width: 35px;
+  background-color: aquamarine;
+  margin: 2px auto;
+  display: flex;
+  border-radius: 50%;
+  border: solid 1px white;
+  object-fit: contain;
+`;
+
+export const ContainerListUser = styled.div`
+  background-color: gray;
+  color: white;
+  :hover {
+    background-color: greenyellow;
+    color: black;
+  }
+`;
+
+export const UserList = styled.li`
+  list-style: none;
+  display: flex;
+`;
+
+export const TitlesUser = styled.li`
+ color: white;
+  margin: auto;
+  list-style: none;
+  display: flex;
+`;
+
+export const TitlesUserUl = styled.ul`
+  background-color: none ;
+  margin: 2px auto;
+  display: flex;
+  background-color: purple;
+`;
+
+export const TitlesUserUl2 = styled.ul`
+  background-color: none ;
+  margin: 2px auto;
   display: flex;
 `;
